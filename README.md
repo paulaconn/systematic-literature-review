@@ -21,5 +21,5 @@ WIP: Organizes bulk search result outputs (.csv) from IEEE and ACM libraries for
 The above information is also available for IEEE data.
 
 ### Notes:
-- The removal of rows with empty null variables in the number of pages column is not fully documented. This occurs in the combineCSV method after a csv file is read. 
-- Future work will review the reliability of the duplicate entries removal and document each.
+- The removal of rows with empty (null) variables in the number of pages column is not fully documented. This occurs in the combineCSV method after a csv file is read. 
+- Duplicate entries removal is not included in the output>removed-data directory.
