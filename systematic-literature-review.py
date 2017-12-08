@@ -23,7 +23,9 @@ def combineOriginal (id, kw):
 
             # read and add keyword column
             temp = pd.read_csv('searches/%s0%d-%d.csv' % (id, i+1, j+1), error_bad_lines=False).assign(keyword=kw.iloc[i,j])
-            df = pd.concat([df,temp]) 
+
+            # use append instead of concat to obtain all rows (even dups)
+            df = df.append(temp, ignore_index=True)
 
     df.to_csv('output/%s-original.csv' % id)
 
@@ -106,11 +108,11 @@ if __name__ == "__main__":
 
     # if searches need to be formatted uncomment lines below. combineOriginal method is useful for troubleshooting only. Otherwise not necessary to run:
 
-    #combineOriginal('ACM', keywords)
-    #formatSearches('ACM', keywords)
+    combineOriginal('ACM', keywords)
+    formatSearches('ACM', keywords)
     df_ACM = combineCSV('ACM', keywords)
 
-    #combineOriginal('IEEE', keywords)
-    #formatSearches('IEEE', keywords)
+    combineOriginal('IEEE', keywords)
+    formatSearches('IEEE', keywords)
     df_ACM = combineCSV('IEEE', keywords)
 
