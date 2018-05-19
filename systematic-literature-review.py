@@ -55,6 +55,7 @@ def formatSearches(id, kw):
 
             # keep full text publications
             df_rm_short = pd.concat([df_rm_short,temp[temp.num_pages < 5]])
+            df_rm_short = pd.concat([df_rm_short,temp[temp['num_pages'].isnull()]])
             temp = temp[temp.num_pages >= 5]
 
             temp.to_csv('searches/%s0%d-%d.csv' % (id, i+1, j+1), error_bad_lines=False)
@@ -89,16 +90,10 @@ def combineCSV(id, kw):
 
             # keep top 50 relevant
             idx += 50
-
-            # document removed files
-            df_rm_relevant = pd.concat([df_rm_relevant, df_main[idx:]])
-
-            # remove duplicates now
             df_main = df_main[:idx]
     
     df_main.to_csv('output/%s.csv' % (id), error_bad_lines=False)
     df_rm_duplicate.to_csv('output/removed-data/%s-rm-duplicate.csv' % id)
-    df_rm_relevant.to_csv('output/removed-data/%s-rm-relevant.csv' % id)
 
     return(df_main)
 
@@ -115,4 +110,6 @@ if __name__ == "__main__":
     combineOriginal('IEEE', keywords)
     formatSearches('IEEE', keywords)
     df_ACM = combineCSV('IEEE', keywords)
+
+
 

@@ -19,6 +19,3 @@ Organizes bulk search result outputs (.csv) from IEEE and ACM libraries for syst
 - ACM-original.csv: All search entries for ACM library with keywords annotated.
 - ACM.csv: Final searches with only top relevant articles, no duplicates, and only full-text papers.
 The above information is also available for IEEE data.
-
-### Notes:
-- The removal of rows with empty (null) variables in the number of pages column is not fully documented in 'df_rm_short'. This occurs in the formatSearches method. 
